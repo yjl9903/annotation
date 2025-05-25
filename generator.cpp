@@ -14,12 +14,12 @@ bool vis[maxn];
 int main(const int argc, char **argv) {
   registerGen(argc, argv, 1);
 
-  const auto output = opt<int>(1);
-  const auto filename = "../t-" + to_string(output) + ".txt";
+  const auto output = opt<string>(1);
+  const auto filename = "../t-" + output + ".txt";
   printf("Output: %s\n", filename.c_str());
   freopen(filename.c_str(), "w", stdout);
 
-  int n = output;
+  int n = stoi(output);
   int m = opt<int>(2);
   printf("%d %d\n", n, m);
   for (int i = 1; i <= n; i++) {
