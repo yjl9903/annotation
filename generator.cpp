@@ -1,8 +1,15 @@
 #include <cstdio>
+#include <set>
+#include <vector>
+#include <utility>
 #include <numeric>
 #include "testlib.h"
 
 using namespace std;
+
+constexpr int maxn = 1e6 + 5;
+
+bool vis[maxn];
 
 int main(const int argc, char **argv) {
   registerGen(argc, argv, 1);
@@ -12,19 +19,39 @@ int main(const int argc, char **argv) {
   printf("Output: %s\n", filename.c_str());
   freopen(filename.c_str(), "w", stdout);
 
-  int t = output;
-  printf("%d\n", t);
-  for (int i = 0; i < t; i++) {
-    const int MIN_VAL = 1;
-    const int MAX_VAL = 1000000000;
+  int n = output;
+  vector<int> p(n);
+  for (int i = 0; i < n; i++) {
+    p[i] = i + 1;
+  }
+  shuffle(p.begin(), p.end());
+  // vector<int> p {1, 2, 3, 4, 7, 5, 6};
 
-    int a, p;
-    do {
-      a = rnd.next(MIN_VAL, MAX_VAL);
-      p = rnd.next(MIN_VAL, MAX_VAL);
-    } while (gcd(a, p) != 1); // 直到找到互质对
+  n = p.size();
+  vector<int> a(n);
 
-    printf("%d %d %d %d\n", a, rnd.next(1, p - 1), p, rnd.next(0, MAX_VAL));
+  // for (int i = 0; i < n; i++) {
+  //   printf("%d%c", p[i], " \n"[i == n - 1]);
+  // }
+
+  for (int i = 0; i < n; i++) {
+    bool found = false;
+    for (int j = 0; j < n; j++) {
+      if (p[i] < p[j] && !vis[j]) {
+        found = true;
+        a[i] = j + 1;
+        vis[j] = true;
+        break;
+      }
+    }
+    if (!found) {
+      a[i] = -1;
+    }
+  }
+
+  printf("%d\n", n);
+  for (int i = 0; i < n; i++) {
+    printf("%d%c", a[i], " \n"[i == n - 1]);
   }
 
   return 0;
