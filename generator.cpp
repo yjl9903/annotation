@@ -20,10 +20,14 @@ int main(const int argc, char **argv) {
   freopen(filename.c_str(), "w", stdout);
 
   int n = output;
+  int m = opt<int>(2);
+  printf("%d %d\n", n, m);
   for (int i = 1; i <= n; i++) {
-    putchar('0' + rnd.next(1, 9));
+    for (int j = 1; j <= m; j++) {
+      putchar(rnd.next(0, 1) ? '#' : '.');
+    }
+    puts("");
   }
-  puts("");
 
   return 0;
 }
