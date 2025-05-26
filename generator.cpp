@@ -19,14 +19,22 @@ int main(const int argc, char **argv) {
   printf("Output: %s\n", filename.c_str());
   freopen(filename.c_str(), "w", stdout);
 
-  int n = stoi(output);
-  int m = opt<int>(2);
-  printf("%d %d\n", n, m);
-  for (int i = 1; i <= n; i++) {
-    for (int j = 1; j <= m; j++) {
-      putchar(rnd.next(0, 1) ? '#' : '.');
-    }
-    puts("");
+  int n = opt<int>("n");
+  int m = opt<int>("m");
+
+  printf("%d\n", n);
+  for (int i = 0; i < n; i++) {
+    printf("%d%c", rnd.next(1, (int)1e9), " \n"[i + 1 == n]);
+  }
+  for (int i = 0; i < n; i++) {
+    printf("%d%c", rnd.next(1, 3), " \n"[i + 1 == n]);
+  }
+  for (int i = 0; i < n; i++) {
+    printf("%d%c", rnd.next(1, 3), " \n"[i + 1 == n]);
+  }
+  printf("%d\n", m);
+  for (int i = 0; i < m; i++) {
+    printf("%d%c", rnd.next(1, 3), " \n"[i + 1 == m]);
   }
 
   return 0;
