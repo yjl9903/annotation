@@ -22,19 +22,9 @@ int main(const int argc, char **argv) {
   int n = opt<int>("n");
   int m = opt<int>("m");
 
-  printf("%d\n", n);
-  for (int i = 0; i < n; i++) {
-    printf("%d%c", rnd.next(1, (int)1e9), " \n"[i + 1 == n]);
-  }
-  for (int i = 0; i < n; i++) {
-    printf("%d%c", rnd.next(1, 3), " \n"[i + 1 == n]);
-  }
-  for (int i = 0; i < n; i++) {
-    printf("%d%c", rnd.next(1, 3), " \n"[i + 1 == n]);
-  }
-  printf("%d\n", m);
+  printf("%d %d\n", n, m);
   for (int i = 0; i < m; i++) {
-    printf("%d%c", rnd.next(1, 3), " \n"[i + 1 == m]);
+    printf("%d %d\n", rnd.next(1, (int)1e9), rnd.next(1, (int)1e9));
   }
 
   return 0;
